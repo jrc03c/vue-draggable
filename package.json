@@ -1,6 +1,6 @@
 {
-  "name": "vue-draggable",
-  "version": "1.0.0",
+  "name": "@jrc03c/vue-draggable",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "watch": "esbuild src/index.js --bundle --outfile=dist/vue-draggable.js --minify --watch"
   },
   "keywords": [],
-  "author": "",
+  "author": "jrc03c",
   "license": "ISC",
   "devDependencies": {
     "esbuild": "^0.18.17",
