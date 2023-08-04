@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .red {
+        background-color: rgba(255, 0, 0, 0.15);
+      }
+
+      .green {
+        background-color: rgba(0, 255, 0, 0.15);
+      }
+
+      .blue {
+        background-color: rgba(0, 0, 255, 0.15);
+      }
+
+      .red,
+      .green,
+      .blue {
+        padding: 1em;
+        border-radius: 4px;
+        user-select: none;
+        width: 256px;
+        height: 128px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <x-draggable class="red">
+        <x-draggable class="green">
+          <x-draggable class="blue">This is draggable!</x-draggable>
+        </x-draggable>
+      </x-draggable>
+    </div>
+
+    <script src="node_modules/vue/dist/vue.global.prod.js"></script>
+    <script src="dist/vue-draggable.js"></script>
+    <script>
+      const app = Vue.createApp({
+        components: {
+          "x-draggable": DraggableComponent,
+        },
+      })
+
+      app.mount("#app")
+    </script>
+  </body>
+</html>

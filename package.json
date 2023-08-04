@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "esbuild src/index.js --bundle --outfile=dist/vue-draggable.js --minify",
+    "watch": "esbuild src/index.js --bundle --outfile=dist/vue-draggable.js --minify --watch"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "prettier": "^3.0.1"
   },
   "dependencies": {
+    "@jrc03c/vue-component-with-css": "^0.0.4",
     "vue": "^3.3.4"
   }
 }
