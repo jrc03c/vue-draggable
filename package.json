@@ -1,11 +1,12 @@
 {
   "name": "@jrc03c/vue-draggable",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "esbuild src/index.js --bundle --outfile=dist/vue-draggable.js --minify",
-    "watch": "esbuild src/index.js --bundle --outfile=dist/vue-draggable.js --minify --watch"
+    "watch": "esbuild src/index.js --bundle --outfile=dist/vue-draggable.js --minify --watch",
+    "pub": "npm version patch --force && npm publish --access=public"
   },
   "keywords": [],
   "author": "jrc03c",
