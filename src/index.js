@@ -55,6 +55,18 @@ const DraggableComponent = createVueComponentWithCSS({
       required: false,
       default: () => false,
     },
+
+    x: {
+      type: Number,
+      required: false,
+      default: () => 0,
+    },
+
+    y: {
+      type: Number,
+      required: false,
+      default: () => 0,
+    },
   },
 
   data() {
@@ -63,6 +75,18 @@ const DraggableComponent = createVueComponentWithCSS({
       isBeingDragged: false,
       offset: { x: 0, y: 0 },
     }
+  },
+
+  watch: {
+    x() {
+      this.$refs.root.style.position = "absolute"
+      this.$refs.root.style.left = this.x + "px"
+    },
+
+    y() {
+      this.$refs.root.style.position = "absolute"
+      this.$refs.root.style.top = this.y + "px"
+    },
   },
 
   methods: {
