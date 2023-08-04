@@ -42,14 +42,9 @@ const createVueComponentWithCSS = require("@jrc03c/vue-component-with-css")
 const DraggableComponent = createVueComponentWithCSS({
   name: "x-draggable",
   template,
+  emits: ["drag-start", "drag-move", "drag-end"],
 
   props: {
-    "custom-classes": {
-      type: String,
-      required: false,
-      default: () => "",
-    },
-
     "is-locked": {
       type: Boolean,
       required: false,
@@ -73,6 +68,7 @@ const DraggableComponent = createVueComponentWithCSS({
     return {
       css,
       isBeingDragged: false,
+      mouseButtonIsDown: false,
       offset: { x: 0, y: 0 },
     }
   },
@@ -93,7 +89,7 @@ const DraggableComponent = createVueComponentWithCSS({
     onMouseDown(event) {
       if (this.isLocked) return
       const rect = this.$refs.root.getBoundingClientRect()
-      this.isBeingDragged = true
+      this.mouseButtonIsDown = true
       this.offset.x = event.clientX - rect.x
       this.offset.y = event.clientY - rect.y
     },
@@ -101,7 +97,14 @@ const DraggableComponent = createVueComponentWithCSS({
     onMouseMove(event) {
       if (this.isLocked) return
 
+      if (this.mouseButtonIsDown && !this.isBeingDragged) {
+        this.$emit("drag-start")
+        this.isBeingDragged = true
+      }
+
       if (this.isBeingDragged) {
+        this.$emit("drag-move")
+
         const parentRect = this.$refs.root.parentElement.getBoundingClientRect()
         this.$refs.root.style.position = "absolute"
 
@@ -115,6 +118,8 @@ const DraggableComponent = createVueComponentWithCSS({
 
     onMouseUp() {
       if (this.isLocked) return
+      this.$emit("drag-end")
+      this.mouseButtonIsDown = false
       this.isBeingDragged = false
     },
   },
