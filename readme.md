@@ -2,6 +2,10 @@
 
 A draggable component for Vue apps.
 
+# To-dos & known issues
+
+- There's a significant bug in the current build that screws up mouse interactions for some (but not all) descendant elements of a draggable component.
+
 # Installation
 
 ```bash
