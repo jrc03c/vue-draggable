@@ -6,6 +6,10 @@ module.exports = {
     node: true,
   },
   extends: ["eslint:recommended", "plugin:vue/vue3-essential"],
+  globals: {
+    Vue: "readonly",
+    VueDraggableComponent: "readonly",
+  },
   overrides: [
     {
       env: {
@@ -20,6 +24,6 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
   },
-  plugins: ["vue"],
+  plugins: ["eslint-plugin-html", "vue"],
   rules: {},
 }

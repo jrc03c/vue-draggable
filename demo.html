@@ -47,20 +47,20 @@
     <script>
       const app = Vue.createApp({
         components: {
-          "x-draggable": DraggableComponent,
+          "x-draggable": VueDraggableComponent,
         },
 
         methods: {
-          onDragEnd() {
-            console.log("Dragging stopped!")
+          onDragEnd(rect) {
+            console.log("Dragging stopped!", rect.x, rect.y)
           },
 
-          onDragMove() {
-            console.log("Dragging continued!")
+          onDragMove(rect) {
+            console.log("Dragging continued!", rect.x, rect.y)
           },
 
-          onDragStart() {
-            console.log("Dragging started!")
+          onDragStart(rect) {
+            console.log("Dragging started!", rect.x, rect.y)
           },
         },
       })

@@ -39,7 +39,7 @@ const template = /* html */ `
 
 const createVueComponentWithCSS = require("@jrc03c/vue-component-with-css")
 
-const DraggableComponent = createVueComponentWithCSS({
+const VueDraggableComponent = createVueComponentWithCSS({
   name: "x-draggable",
   template,
   emits: ["drag-start", "drag-move", "drag-end"],
@@ -98,12 +98,12 @@ const DraggableComponent = createVueComponentWithCSS({
       if (this.isLocked) return
 
       if (this.mouseButtonIsDown && !this.isBeingDragged) {
-        this.$emit("drag-start")
+        this.$emit("drag-start", this.$refs.root.getBoundingClientRect())
         this.isBeingDragged = true
       }
 
       if (this.isBeingDragged) {
-        this.$emit("drag-move")
+        this.$emit("drag-move", this.$refs.root.getBoundingClientRect())
 
         const parentRect = this.$refs.root.parentElement.getBoundingClientRect()
         this.$refs.root.style.position = "absolute"
@@ -118,7 +118,11 @@ const DraggableComponent = createVueComponentWithCSS({
 
     onMouseUp() {
       if (this.isLocked) return
-      this.$emit("drag-end")
+
+      if (this.isBeingDragged) {
+        this.$emit("drag-end", this.$refs.root.getBoundingClientRect())
+      }
+
       this.mouseButtonIsDown = false
       this.isBeingDragged = false
     },
@@ -139,9 +143,9 @@ const DraggableComponent = createVueComponentWithCSS({
 })
 
 if (typeof module !== "undefined") {
-  module.exports = DraggableComponent
+  module.exports = VueDraggableComponent
 }
 
 if (typeof globalThis !== "undefined") {
-  globalThis.DraggableComponent = DraggableComponent
+  globalThis.VueDraggableComponent = VueDraggableComponent
 }

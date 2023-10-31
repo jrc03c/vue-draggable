@@ -16,11 +16,11 @@ npm install --save @jrc03c/vue-draggable
 
 ```js
 const { createApp } = require("vue")
-const DraggableComponent = require("@jrc03c/vue-draggable")
+const VueDraggableComponent = require("@jrc03c/vue-draggable")
 
 const app = createApp({
   components: {
-    "x-draggable": DraggableComponent,
+    "x-draggable": VueDraggableComponent,
   },
 
   template: `
